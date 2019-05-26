@@ -8,15 +8,15 @@ services:
     links:
       - postgresql
     environment:
-     - HOST
-     - PORT
-     - USE_SSL
-     - VIRTUAL_HOST: www.qbittorrent.${LOCALDOMAIN}, qbittorrent.${LOCALDOMAIN} \
-     - LETSENCRYPT_HOST: www.qbittorrent.${LOCALDOMAIN}, qbittorrent.${LOCALDOMAIN} \
+    #  - HOST
+    #  - PORT
+     - USE_SSL: ${USE_SSL}
+     - VIRTUAL_HOST: www.gekko.${LOCALDOMAIN}, gekko.${LOCALDOMAIN} \
+     - LETSENCRYPT_HOST: www.gekko.${LOCALDOMAIN}, gekko.${LOCALDOMAIN} \
      - LETSENCRYPT_EMAIL: tonibobone@gmail.com \
-      # LETSENCRYPT_TEST: "true"
-    ports: # you can comment this out when using the nginx frontend
-      - "${PORT}:${PORT}"
+     - LETSENCRYPT_TEST: "true"
+    # ports: # you can comment this out when using the nginx frontend
+      # - "${PORT}:${PORT}"
 ## optionally set nginx vars if you wish to frontend it with nginx
 #    environment:
 #     - VIRTUAL_HOST=gekko
@@ -29,7 +29,8 @@ postgresql:
   ports:
     - 5432:5432
   volumes:
-    - ./_postgresql:/var/lib/postgresql/data:rw
+    - ${DATAFOLDER}:/var/lib/postgresql/data:rw
+    #- ./_postgresql:/var/lib/postgresql/data:rw
   environment:
     - POSTGRES_DB: gekko
     - POSTGRES_USER: username
