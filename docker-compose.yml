@@ -36,7 +36,7 @@ services:
       - POSTGRES_USER: username
       - POSTGRES_PASSWORD: password
 
-  networks:
+networks:
   default:
     external:
       name: webproxy
