@@ -32,9 +32,9 @@ services:
       - ${DATAFOLDER}:/var/lib/postgresql/data:rw
       #- ./_postgresql:/var/lib/postgresql/data:rw
     environment:
-      - POSTGRES_DB: gekko
-      - POSTGRES_USER: username
-      - POSTGRES_PASSWORD: password
+      - POSTGRES_DB: ${POSTGRES_DB}
+      - POSTGRES_USER: ${POSTGRES_USER}
+      - POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
 networks:
   default:
