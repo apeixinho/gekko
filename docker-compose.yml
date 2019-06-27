@@ -3,18 +3,19 @@ services:
   gekko:
     build: ./
     volumes:
-      - ./volumes/gekko/history:/usr/src/app/history
+      #- ./volumes/gekko/history:/usr/src/app/history
+      - ${GEKKO_FOLDER}/gekko/history:/home/gekko/app/history
       - ./config.js:/usr/src/app/config.js
     links:
       - postgresql
     environment:
     #  - HOST
     #  - PORT
-     - USE_SSL: ${USE_SSL}
-     - VIRTUAL_HOST: www.gekko.${LOCALDOMAIN}, gekko.${LOCALDOMAIN} \
-     - LETSENCRYPT_HOST: www.gekko.${LOCALDOMAIN}, gekko.${LOCALDOMAIN} \
-     - LETSENCRYPT_EMAIL: tonibobone@gmail.com \
-     - LETSENCRYPT_TEST: "true"
+      USE_SSL: ${USE_SSL}
+      VIRTUAL_HOST: www.gekko.${LOCALDOMAIN}, gekko.${LOCALDOMAIN} \
+      LETSENCRYPT_HOST: www.gekko.${LOCALDOMAIN}, gekko.${LOCALDOMAIN} \
+      LETSENCRYPT_EMAIL: tonibobone@gmail.com \
+      LETSENCRYPT_TEST: "true"
     # ports: # you can comment this out when using the nginx frontend
       # - "${PORT}:${PORT}"
 ## optionally set nginx vars if you wish to frontend it with nginx

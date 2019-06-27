@@ -47,12 +47,12 @@ RUN chown -R gekko:gekko /home/gekko
 
 USER gekko
 
-WORKDIR /home/app/site1
-
 EXPOSE 3000
 
-RUN chmod +x /usr/src/app/docker-entrypoint.sh
+RUN chmod +x /home/gekko/app/docker-entrypoint.sh
+#RUN chmod +x /usr/src/app/docker-entrypoint.sh
 
-ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]
+#ENTRYPOINT ["/usr/src/app/docker-entrypoint.sh"]
+ENTRYPOINT ["/home/gekko/app/docker-entrypoint.sh"]
 
 CMD ["--config", "config.js", "--ui"]
